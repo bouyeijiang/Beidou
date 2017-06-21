@@ -56,6 +56,154 @@ namespace Bouyei.BeidouLSP
             }
         }
 
+        /// <summary>
+        /// BCD编码字节转换为char数组
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
+        public static char[] BCDToChar(this byte[] bytes)
+        {
+            char[] number = new char[(bytes.Length << 1)];
+            int tempCount = 0, i = 0;
+
+            unsafe
+            {
+                fixed (byte* src = bytes)
+                {
+                    fixed (char* dst = number)
+                    {
+                        while (i < bytes.Length)
+                        {
+                            *(dst + tempCount) = (char)(*(src + i) >> 4);
+                            *(dst + tempCount + 1) = (char)(*(src + i) & 0x0F);
+                            tempCount += 2;
+                            ++i;
+                        }
+                    }
+                }
+            }
+            return number;
+        }
+
+        /// <summary>
+        /// BCD编码字节转换为string
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
+        public static string BCDToString(this byte[] bytes)
+        {
+            char[] strChars = new char[bytes.Length << 1];
+
+            int len = 0, index = 0;
+            unsafe
+            {
+                fixed (byte* d = bytes)
+                {
+                    byte* ds = d;
+                    do
+                    {
+                        strChars[index] += (char)(((*ds) >> 4) + 48);
+                        strChars[index += 1] += (char)(((*ds) & 0x0F) + 48);
+                        ++ds;
+                        ++index;
+                        ++len;
+                    }
+                    while (len < bytes.Length && index < strChars.Length);
+                }
+            }
+            return new string(strChars);
+        }
+
+        /// <summary>
+        /// char转换为BCD编码字节
+        /// </summary>
+        /// <param name="chars"></param>
+        /// <returns></returns>
+        public static byte[] ToBCD(this char[] chars)
+        {
+            byte[] number = new byte[(chars.Length >> 1)];
+            int len = number.Length;
+            unsafe
+            {
+                fixed (char* sr = chars)
+                {
+                    fixed (byte* dst = number)
+                    {
+                        char* s = sr;
+                        byte* dt = dst;
+                        do
+                        {
+                            *(dt++) = (byte)(((*(s++) - 48) << 4) | (*(s++) - 48));
+                        }
+                        while ((--len) > 0);
+                    }
+                }
+            }
+            return number;
+        }
+
+        /// <summary>
+        /// 字符串转换为BCD编码
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static byte[] ToBCD(this string value)
+        {
+            //保证为偶数位
+            if (value.Length % 2 != 0) value.Insert(0, "0");
+
+            byte[] number = new byte[(value.Length >> 1)];
+
+            int len = number.Length;
+            unsafe
+            {
+                fixed (char* sr = value)
+                {
+                    fixed (byte* dst = number)
+                    {
+                        char* s = sr;
+                        byte* dt = dst;
+                        do
+                        {
+                            *(dt++) = (byte)(((*(s++) - 48) << 4) | (*(s++) - 48));
+                        }
+                        while ((--len) > 0);
+                    }
+                }
+            }
+            return number;
+        }
+
+        public static DateTime BCDToTimeFormat(this byte[] data, TimeFormat tFormat = TimeFormat.yyMMddHHmmss)
+        {
+            string str = data.BCDToString();
+            return DateTime.ParseExact(str, tFormat.ToString(), System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// 将日期转换为BCD格式
+        /// </summary>
+        /// <param name="time"></param>
+        /// <param name="tFormat">时间格式</param>
+        /// <returns></returns>
+        public static byte[] TimeFormatToBCD(this DateTime time, TimeFormat tFormat = TimeFormat.yyMMddHHmmss)
+        {
+            string timeStr = time.ToString(tFormat.ToString());
+            return timeStr.ToBCD();
+        }
+
+        /// <summary>
+        /// 序列化为时间格式格式
+        /// </summary>
+        /// <param name="timeString"></param>
+        /// <param name="tFormat">时间格式</param>
+        /// <returns></returns>
+        public static string StringTimeFormat(this string timeString, TimeFormat tFormat = TimeFormat.yyyyMMddHHmmss)
+        {
+            return DateTime.ParseExact(timeString, tFormat.ToString(), System.Globalization.CultureInfo.InvariantCulture).ToString();
+        }
+
+
         internal static unsafe int BytesCompareTo(byte* src, byte* dst, int count)
         {
 
@@ -170,5 +318,16 @@ namespace Bouyei.BeidouLSP
             }
 
         }
+    }
+
+    public enum TimeFormat
+    {
+        yyMMdd,
+        yyMMddHHmmss,
+        yyyyMMddHHmmss,
+        yyyyMM,
+        HHmmss,
+        HHmm,
+        HH
     }
 }

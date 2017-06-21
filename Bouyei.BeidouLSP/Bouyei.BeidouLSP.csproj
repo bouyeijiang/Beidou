@@ -65,6 +65,30 @@
     <Compile Include="JT808\Request\R_PB_8301.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="JT808\Request\R_PB_8302.cs" />
+    <Compile Include="JT808\Request\R_PB_8303.cs" />
+    <Compile Include="JT808\Request\R_PB_8304.cs" />
+    <Compile Include="JT808\Request\R_PB_8400.cs" />
+    <Compile Include="JT808\Request\R_PB_8401.cs" />
+    <Compile Include="JT808\Request\R_PB_8500.cs" />
+    <Compile Include="JT808\Request\R_PB_8600.cs" />
+    <Compile Include="JT808\Request\R_PB_8601.cs" />
+    <Compile Include="JT808\Request\R_PB_8602.cs" />
+    <Compile Include="JT808\Request\R_PB_8603.cs" />
+    <Compile Include="JT808\Request\R_PB_8604.cs" />
+    <Compile Include="JT808\Request\R_PB_8605.cs" />
+    <Compile Include="JT808\Request\R_PB_8606.cs" />
+    <Compile Include="JT808\Request\R_PB_8607.cs" />
+    <Compile Include="JT808\Request\R_PB_8700.cs" />
+    <Compile Include="JT808\Request\R_PB_8701.cs" />
+    <Compile Include="JT808\Request\R_PB_8800.cs" />
+    <Compile Include="JT808\Request\R_PB_8801.cs" />
+    <Compile Include="JT808\Request\R_PB_8802.cs" />
+    <Compile Include="JT808\Request\R_PB_8803.cs" />
+    <Compile Include="JT808\Request\R_PB_8804.cs" />
+    <Compile Include="JT808\Request\R_PB_8805.cs" />
+    <Compile Include="JT808\Request\R_PB_8900.cs" />
+    <Compile Include="JT808\Request\R_PB_8A00.cs" />
     <Compile Include="Nactive\Api.cs" />
     <Compile Include="PacketConvert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
