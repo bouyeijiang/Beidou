@@ -40,16 +40,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JT808\Request\R_PB_8001.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="JT808\Request\R_PB_8003.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="JT808\Request\R_PB_8100.cs" />
+    <Compile Include="JT808\Request\R_PB_8103.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="JT808\Request\R_PB_8105.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="JT808\Request\R_PB_8106.cs" />
+    <Compile Include="JT808\Request\R_PB_8108.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="JT808\Request\R_PB_8202.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="JT808\Request\R_PB_8203.cs" />
+    <Compile Include="JT808\Request\R_PB_8300.cs" />
+    <Compile Include="JT808\Request\R_PB_8301.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Nactive\Api.cs" />
     <Compile Include="PacketConvert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Structures\PacketBody.cs" />
+    <Compile Include="JT808\PacketBody.cs" />
     <Compile Include="Structures\PacketCommand.cs" />
     <Compile Include="Structures\PacketMessage.cs" />
+    <Compile Include="Utils\BitConvert.cs" />
     <Compile Include="Utils\Extension.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="JT808\" />
+    <Folder Include="JT808\Reponse\" />
     <Folder Include="JT809\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

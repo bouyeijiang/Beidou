@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace Bouyei.BeidouLSP.Structures
+namespace Bouyei.BeidouLSP.JT808
 {
     #region 数据结构
     public struct UInt32Bytes
@@ -51,7 +51,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 终端通用应答
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0001
+    public struct PB0001
     {
         /// <summary>
         /// 对应的应答流水号
@@ -71,7 +71,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 终端注册
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0100
+    public struct PB0100
     {
         /// <summary>
         /// 省域ID
@@ -107,7 +107,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 终端鉴权
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0102
+    public struct PB0102
     {
         /// <summary>
         /// 鉴权码
@@ -119,7 +119,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 查询终端参数应答
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0104
+    public struct PB0104
     {
         /// <summary>
         /// 对应的应答流水号
@@ -135,7 +135,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 查询终端属性应答
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0107
+    public struct PB0107
     {
         /// <summary>
         ///bit0，0：不适用客运车辆，1：适用客运车辆；
@@ -195,7 +195,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 终端升级结果通知
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0108
+    public struct PB0108
     {
         /// <summary>
         ///升级类型
@@ -213,7 +213,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 位置信息汇报
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0200
+    public struct PB0200
     {
         /// <summary>
         /// 报警标识，二进制各个位的表示见协议jt/t808协议说明
@@ -257,7 +257,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 位置信息查询应答
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0201
+    public struct PB0201
     {
         /// <summary>
         /// 对应的应答流水号
@@ -266,14 +266,14 @@ namespace Bouyei.BeidouLSP.Structures
         /// <summary>
         /// 位置信息汇报
         /// </summary>
-        public Info0200 PositionInformation;
+        public PB0200 PositionPBrmation;
     }
 
     /// <summary>
     /// 事件报告
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0301
+    public struct PB0301
     {
         /// <summary>
         /// 事件Id
@@ -285,7 +285,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 提问应答
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0302
+    public struct PB0302
     {
         /// <summary>
         /// 对应的应答流水号
@@ -301,7 +301,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 信息点播/取消
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0303
+    public struct PB0303
     {
         /// <summary>
         /// 消息类型
@@ -317,7 +317,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 车辆控制应答
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0500
+    public struct PB0500
     {
         /// <summary>
         /// 对应的应答流水号
@@ -326,14 +326,14 @@ namespace Bouyei.BeidouLSP.Structures
         /// <summary>
         /// 位置信息汇报
         /// </summary>
-        public Info0200 PositionInformation;
+        public PB0200 PositionPBrmation;
     }
 
     /// <summary>
     /// 行驶记录数据上传
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0700
+    public struct PB0700
     {
         /// <summary>
         /// 对应的应答流水号
@@ -354,7 +354,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 电子运单
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0701
+    public struct PB0701
     {
         /// <summary>
         /// 电子运单数据包
@@ -366,7 +366,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 驾驶员身份信息采集上报
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0702
+    public struct PB0702
     {
         /// <summary>
         /// 状态
@@ -410,7 +410,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 定位数据批量上传
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0704
+    public struct PB0704
     {
         /// <summary>
         /// 位置数据类型,0：正常位置批量汇报，1：盲区补报
@@ -419,14 +419,14 @@ namespace Bouyei.BeidouLSP.Structures
         /// <summary>
         /// 位置信息汇报数据项集合
         /// </summary>
-        public List<Info0200> PositionInformationItems;
+        public List<PB0200> PositionPBrmationItems;
     }
 
     /// <summary>
     /// CAN 总线数据上传
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0705
+    public struct PB0705
     {
         /// <summary>
         /// CAN总线数据接收时间,5字节
@@ -463,7 +463,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 多媒体事件信息上传
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0800
+    public struct PB0800
     {
         /// <summary>
         /// 多媒体数据Id
@@ -498,7 +498,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 多媒体数据上传
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0801
+    public struct PB0801
     {
         /// <summary>
         /// 多媒体数据Id
@@ -526,7 +526,7 @@ namespace Bouyei.BeidouLSP.Structures
         /// <summary>
         /// 位置信息汇报
         /// </summary>
-        public Info0200 PositionInformation;
+        public PB0200 PositionPBrmation;
         /// <summary>
         /// 多媒体数据包
         /// </summary>
@@ -537,7 +537,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 存储多媒体数据检索应答
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0802
+    public struct PB0802
     {
         /// <summary>
         /// 对应的应答流水号
@@ -576,14 +576,14 @@ namespace Bouyei.BeidouLSP.Structures
         /// <summary>
         /// 位置信息汇报
         /// </summary>
-        public Info0200 PositionInformation;
+        public PB0200 PositionPBrmation;
     }
 
     /// <summary>
     /// 摄像头立即拍摄命令应答
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0805
+    public struct PB0805
     {
         /// <summary>
         /// 对应的应答流水号
@@ -603,7 +603,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 数据上行透传
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0900
+    public struct PB0900
     {
         ///<summary>
         ///透传类型
@@ -624,7 +624,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 数据压缩上报
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0901
+    public struct PB0901
     {
         /// <summary>
         /// 经过GZIP压缩的压缩数据
@@ -636,7 +636,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 终端 RSA 公钥
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info0A00
+    public struct PB0A00
     {
         /// <summary>
         /// 终端 RSA 公钥{e,n}中的 e
@@ -652,7 +652,7 @@ namespace Bouyei.BeidouLSP.Structures
     ///  消息指令0x8001(平台通用应答)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8001
+    public struct PB8001
     {
         /// <summary>
         /// 对应收到的流水号
@@ -672,7 +672,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 消息指令0x8003 补传分包请求
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8003
+    public struct PB8003
     {
         /// <summary>
         /// 第一个包的消息流水号
@@ -688,7 +688,7 @@ namespace Bouyei.BeidouLSP.Structures
     ///  终端注册应答
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8100
+    public struct PB8100
     {
         /// <summary>
         /// 对应的流水号
@@ -709,7 +709,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 设置终端参数
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8103
+    public struct PB8103
     {
         /// <summary>
         /// 参数集合,相应的值设置可以查看jt808协议中消息ID：0x8103的说明
@@ -721,7 +721,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 消息指令0x8105(终端控制)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8105
+    public struct PB8105
     {
         /// <summary>
         /// 命令字
@@ -737,7 +737,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 0x8106消息指令 查询指定终端参数
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8106
+    public struct PB8106
     {
         /// <summary>
         /// 参数ID列表
@@ -749,7 +749,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 终端升级数据包信息结构
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8108
+    public struct PB8108
     {
         /// <summary>
         /// 升级类型,0：终端，12：道路运输证 IC 卡读卡器，52：北斗卫星定位模块
@@ -773,7 +773,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 临时位置跟踪控制
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8202
+    public struct PB8202
     {
         /// <summary>
         /// 时间间隔(单位秒)0表示停止跟踪
@@ -789,7 +789,7 @@ namespace Bouyei.BeidouLSP.Structures
     ///   消息指令0x8203(人工确认报警消息)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8203
+    public struct PB8203
     {
         /// <summary>
         /// 对应的消息流水号
@@ -829,7 +829,7 @@ namespace Bouyei.BeidouLSP.Structures
     ///  消息指令0x8300(文本下发指令)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8300
+    public struct PB8300
     {
         /// <summary>
         /// （0-1）1:紧急内容
@@ -861,7 +861,7 @@ namespace Bouyei.BeidouLSP.Structures
     ///事件设置
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8301
+    public struct PB8301
     {
         /// <summary>
         /// 0：删除终端现有所有事件，该命令后不带后继字节；
@@ -881,7 +881,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 提问下发
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8302
+    public struct PB8302
     {
         /// <summary>
         /// (0-1)1紧急信息
@@ -909,7 +909,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 消息指令0x8303(信息点播菜单设置)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8303
+    public struct PB8303
     {
         /// <summary>
         /// 设置类型,0：删除全部信息项,1：更新信息项,2：追加信息项,3：修改信息项
@@ -925,7 +925,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 消息指令0x8401(设置电话本)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8401
+    public struct PB8401
     {
         /// <summary>
         /// 0：删除终端上所有存储的联系人；
@@ -938,11 +938,11 @@ namespace Bouyei.BeidouLSP.Structures
         /// <summary>
         /// 电话本联系人项
         /// </summary>
-        public List<_Info8401Item> ContactList;
+        public List<_PB8401Item> ContactList;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct _Info8401Item
+    public struct _PB8401Item
     {
         /// <summary>
         /// 标志,1呼入,2呼出,3呼入/呼出
@@ -962,7 +962,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 圆形区域结构信息
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8600
+    public struct PB8600
     {
         /// <summary>
         /// 设置属性,0更新,1追加,2修改
@@ -971,14 +971,14 @@ namespace Bouyei.BeidouLSP.Structures
         /// <summary>
         /// 圆形区域项集合
         /// </summary>
-        public List<Info8600Item> circleItemsInfo;
+        public List<PB8600Item> circleItemsPB;
     }
 
     /// <summary>
     /// 圆形区域项
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8600Item
+    public struct PB8600Item
     {
         /// <summary>
         /// 圆形Id
@@ -1074,7 +1074,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 矩形区域结构信息
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public class Info8602
+    public class PB8602
     {
         /// <summary>
         /// 设置属性,0更新,1追加,2修改
@@ -1083,14 +1083,14 @@ namespace Bouyei.BeidouLSP.Structures
         /// <summary>
         /// 矩形区域项集合
         /// </summary>
-        public List<Info8602Item> rectangleItemsInfo;
+        public List<PB8602Item> rectangleItemsPB;
     }
 
     /// <summary>
     /// 矩形区域项
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8602Item
+    public struct PB8602Item
     {
         /// <summary>
         /// 矩形区域Id
@@ -1138,7 +1138,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 多边形区域结构信息
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8604
+    public struct PB8604
     {
         /// <summary>
         /// 多边形Id
@@ -1167,14 +1167,14 @@ namespace Bouyei.BeidouLSP.Structures
         /// <summary>
         /// 拐点项,Value:纬度;UInt32Value:经度
         /// </summary>
-        public List<UInt32UInt32> polygonItemsInfo;
+        public List<UInt32UInt32> polygonItemsPB;
     }
 
     /// <summary>
     /// 路线结构信息
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8606
+    public struct PB8606
     {
         /// <summary>
         /// 路线ID
@@ -1199,14 +1199,14 @@ namespace Bouyei.BeidouLSP.Structures
         /// <summary>
         /// 拐点项集合
         /// </summary>
-        public List<Info8606Item> Items;
+        public List<PB8606Item> Items;
     }
 
     /// <summary>
     /// 路线拐点项
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8606Item
+    public struct PB8606Item
     {
         /// <summary>
         /// 拐点ID
@@ -1306,7 +1306,7 @@ namespace Bouyei.BeidouLSP.Structures
     ///消息指令0x8700(行驶记录数据采集命令)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8700
+    public struct PB8700
     {
         /// <summary>
         /// 命令字
@@ -1315,11 +1315,11 @@ namespace Bouyei.BeidouLSP.Structures
         /// <summary>
         /// 数据项
         /// </summary>
-        public Info8700Item item;
+        public PB8700Item item;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8700Item
+    public struct PB8700Item
     {
         /// <summary>
         /// 起始时间,格式如：2014120116141800
@@ -1339,7 +1339,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 消息指令0x8800(多媒体数据上传应答)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8800
+    public struct PB8800
     {
         /// <summary>
         /// 多媒体ID
@@ -1355,7 +1355,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 摄像头拍摄信息结构
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public class Info8801
+    public class PB8801
     {
         /// <summary>
         /// 通道Id,>0
@@ -1404,7 +1404,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 多媒体检索信息结构
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public class Info8802
+    public class PB8802
     {
         /// <summary>
         /// 多媒体类型,0:图片,1:音频,2:视频
@@ -1434,7 +1434,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 多媒体上传数据结构信息
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8803
+    public struct PB8803
     {
         /// <summary>
         /// 多媒体类型,0:图像,1:音频,2:视频
@@ -1467,7 +1467,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 录音消息结构信息
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8804
+    public struct PB8804
     {
         /// <summary>
         /// 录音指令,0:停止录音,0x01:开始录音
@@ -1491,7 +1491,7 @@ namespace Bouyei.BeidouLSP.Structures
     ///消息指令0x8805(单条存储多媒体数据检索上传命令)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8805
+    public struct PB8805
     {
         /// <summary>
         /// 多媒体ID,必需大于0
@@ -1507,7 +1507,7 @@ namespace Bouyei.BeidouLSP.Structures
     /// 消息指令0x8900(数据下行透传)
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Info8900
+    public struct PB8900
     {
         /// <summary>
         /// 41：串口1透传,46：串口2透传，240-255：用户自定义透传

@@ -106,7 +106,7 @@ namespace Bouyei.BeidouLSP.Structures
                 msgBody.CopyTo(buffer, k);
             }
 
-            return buffer;
+            return Escape(buffer);
         }
 
         /// <summary>
