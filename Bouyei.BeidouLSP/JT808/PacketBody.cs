@@ -266,7 +266,7 @@ namespace Bouyei.BeidouLSP.JT808
         /// <summary>
         /// 位置信息汇报
         /// </summary>
-        public PB0200 PositionPBrmation;
+        public PB0200 PositionInformation;
     }
 
     /// <summary>
@@ -326,7 +326,7 @@ namespace Bouyei.BeidouLSP.JT808
         /// <summary>
         /// 位置信息汇报
         /// </summary>
-        public PB0200 PositionPBrmation;
+        public PB0200 PositionInformation;
     }
 
     /// <summary>
@@ -419,7 +419,7 @@ namespace Bouyei.BeidouLSP.JT808
         /// <summary>
         /// 位置信息汇报数据项集合
         /// </summary>
-        public List<PB0200> PositionPBrmationItems;
+        public List<PB0200> PositionInformationItems;
     }
 
     /// <summary>
@@ -526,7 +526,7 @@ namespace Bouyei.BeidouLSP.JT808
         /// <summary>
         /// 位置信息汇报
         /// </summary>
-        public PB0200 PositionPBrmation;
+        public PB0200 PositionInformation;
         /// <summary>
         /// 多媒体数据包
         /// </summary>
@@ -576,7 +576,7 @@ namespace Bouyei.BeidouLSP.JT808
         /// <summary>
         /// 位置信息汇报
         /// </summary>
-        public PB0200 PositionPBrmation;
+        public PB0200 PositionInformation;
     }
 
     /// <summary>
@@ -971,7 +971,7 @@ namespace Bouyei.BeidouLSP.JT808
         /// <summary>
         /// 圆形区域项集合
         /// </summary>
-        public List<PB8600Item> circleItemsPB;
+        public List<PB8600Item> circleItemsInfo;
     }
 
     /// <summary>
@@ -1083,7 +1083,7 @@ namespace Bouyei.BeidouLSP.JT808
         /// <summary>
         /// 矩形区域项集合
         /// </summary>
-        public List<PB8602Item> rectangleItemsPB;
+        public List<PB8602Item> rectangleItemsInfo;
     }
 
     /// <summary>
@@ -1167,7 +1167,7 @@ namespace Bouyei.BeidouLSP.JT808
         /// <summary>
         /// 拐点项,Value:纬度;UInt32Value:经度
         /// </summary>
-        public List<UInt32UInt32> polygonItemsPB;
+        public List<UInt32UInt32> polygonItemsInfo;
     }
 
     /// <summary>

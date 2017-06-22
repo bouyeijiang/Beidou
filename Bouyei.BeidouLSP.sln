@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bouyei.BeidouLSP", "Bouyei.BeidouLSP\Bouyei.BeidouLSP.csproj", "{D0B89562-B259-4B54-A76F-D8FC9CC22965}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bouyei.BeidouLSPDemo", "Bouyei.BeidouLSPDemo\Bouyei.BeidouLSPDemo.csproj", "{C9140470-E1C9-40E1-9FFD-FB65D7426FC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D0B89562-B259-4B54-A76F-D8FC9CC22965}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0B89562-B259-4B54-A76F-D8FC9CC22965}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0B89562-B259-4B54-A76F-D8FC9CC22965}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9140470-E1C9-40E1-9FFD-FB65D7426FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9140470-E1C9-40E1-9FFD-FB65D7426FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9140470-E1C9-40E1-9FFD-FB65D7426FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9140470-E1C9-40E1-9FFD-FB65D7426FC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
