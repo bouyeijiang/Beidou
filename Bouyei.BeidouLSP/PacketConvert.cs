@@ -73,6 +73,26 @@ namespace Bouyei.BeidouLSP
         }
 
         /// <summary>
+        /// 根据偏移量开始解析数据包
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <param name="error">错误信息</param>
+        /// <returns></returns>
+        public PacketMessage Deserialized(byte[] buffer, int offset, int count)
+        {
+            unsafe
+            {
+                byte[] dst = new byte[count];
+                fixed (byte* src = buffer, _dst = dst)
+                {
+                    Nactive.Api.memcpy(_dst, src + offset, count);
+                }
+
+                return Deserialized(dst);
+            }
+        }
+
+        /// <summary>
         /// 反序列化字节序为消息头结构信息，该消息必需为原始数据包(不需要反转义和校验的数据包)
         /// </summary>
         /// <param name="buffer"></param>
