@@ -20,7 +20,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// </summary>
         /// <param name="info">多媒体数据上传结构</param>
         /// <returns></returns>
-        public byte[] Serialized(PB8803 info)
+        public byte[] Encode(PB8803 info)
         {
             //计算数组长度
             byte[] data = new byte[16];

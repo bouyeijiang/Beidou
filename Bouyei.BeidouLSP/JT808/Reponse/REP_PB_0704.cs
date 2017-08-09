@@ -27,7 +27,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
         /// </summary>
         /// <param name="msgBody"></param>
         /// <returns></returns>
-        public PB0704 Deserialized(byte[] msgBody)
+        public PB0704 Decode(byte[] msgBody)
         {
             REP_PB_0200 body0200 = new REP_PB_0200();
             int indexOffset = 3;
@@ -45,7 +45,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
                 //位置汇报数据长度
                 dlen = msgBody.ToUInt16(indexOffset);
                 //解析位置汇报数据
-                item.PositionInformationItems.Add(body0200.Deserialized(msgBody.Copy(indexOffset += 2, dlen)));
+                item.PositionInformationItems.Add(body0200.Decode(msgBody.Copy(indexOffset += 2, dlen)));
 
                 indexOffset += dlen;
             }

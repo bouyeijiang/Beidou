@@ -30,7 +30,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// <param name="eventType">事件类型,0:删除所有事件(该命令后不带后继字节);1:更新事件;2:追加事件;3:修改事件;4:删除特定事件(该命令后不带事件内容);</param>
         /// <param name="eventItems">事件项集合(个数不超过255)</param>
         /// <returns></returns>
-        public byte[] Serialized(PB8301 info)
+        public byte[] Encode(PB8301 info)
         {
             byte count = (byte)info.eventItems.Count;
             List<byte> buffer = new List<byte>(count * 12);

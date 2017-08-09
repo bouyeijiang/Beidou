@@ -21,7 +21,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// <param name="mediaId">多媒体ID,必需大于0</param>
         /// <param name="deleteFlag">0：保留；1：删除</param>
         /// <returns></returns>
-        public byte[] Serialized(PB8805 info)
+        public byte[] Encode(PB8805 info)
         {
             byte[] buffer = new byte[5];
             info.mediaId.ToBytes().CopyTo(buffer, 0);

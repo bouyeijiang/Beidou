@@ -26,7 +26,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// 0x8001通用应答数据体打包
         /// </summary>
         /// <returns></returns>
-        public byte[] Serialized(PB8001 info)
+        public byte[] Encode(PB8001 info)
         {
             return new byte[5]
             {

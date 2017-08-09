@@ -20,7 +20,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// 数据体打包
         /// </summary>
         /// <returns></returns>
-        public byte[] Serialized(PB8900 info)
+        public byte[] Encode(PB8900 info)
         {
             byte[] data = new byte[info.content.Length + 1];
             data[0] = info.mType;

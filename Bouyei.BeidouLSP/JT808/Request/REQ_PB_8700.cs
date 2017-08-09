@@ -21,7 +21,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// <param name="cmd">命令字</param>
         /// <param name="pdata">请求数据包</param>
         /// <returns></returns>
-        public byte[] Serialized(PB8700 info)
+        public byte[] Encode(PB8700 info)
         {
             byte[] buffer = new byte[17];
             buffer[0] = info.Cmd;

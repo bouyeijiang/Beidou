@@ -45,7 +45,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
         /// </summary>
         /// <param name="msgBody"></param>
         /// <returns></returns>
-        public PB0107 Deserialized(byte[] msgBody)
+        public PB0107 Decode(byte[] msgBody)
         {
             int indexOffset = 0;
             byte len = 0;

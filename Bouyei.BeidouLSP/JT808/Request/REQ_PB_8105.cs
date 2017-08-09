@@ -23,7 +23,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         {
         }
 
-        public byte[] Serialized(PB8105 info)
+        public byte[] Encode(PB8105 info)
         {
             int len = (info.CmdParameters == null ? 1 : (info.CmdParameters.Length + 1));
 

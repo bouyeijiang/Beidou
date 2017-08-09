@@ -27,7 +27,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
         /// </summary>
         /// <param name="msgBody"></param>
         /// <returns></returns>
-        public PB0801 Deserialized(byte[] msgBody)
+        public PB0801 Decode(byte[] msgBody)
         {
             int indexOffset = 0;
             REP_PB_0200 body0200 = new REP_PB_0200();
@@ -41,7 +41,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
                 ChannelId = msgBody[indexOffset += 1]
             };
 
-            item.PositionInformation = body0200.Deserialized(msgBody.Copy(indexOffset += 1, 28));
+            item.PositionInformation = body0200.Decode(msgBody.Copy(indexOffset += 1, 28));
 
             item.MultimediaPackage = msgBody.Copy(indexOffset += 28, msgBody.Length - indexOffset);
 

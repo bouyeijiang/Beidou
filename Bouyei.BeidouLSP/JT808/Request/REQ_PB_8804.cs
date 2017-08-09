@@ -20,7 +20,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>
-        public byte[] Serialized(PB8804 info)
+        public byte[] Encode(PB8804 info)
         {
             return new byte[5]
             {

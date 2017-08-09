@@ -22,7 +22,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
         public REP_PB_0201()
         {
         }
-        public PB0201 Deserialized(byte[] msgBody)
+        public PB0201 Decode(byte[] msgBody)
         {
             PB0201 item = new PB0201()
             {
@@ -30,7 +30,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
             };
 
             REP_PB_0200 body0200 = new REP_PB_0200();
-            item.PositionInformation = body0200.Deserialized(msgBody.Copy(2, msgBody.Length - 2));
+            item.PositionInformation = body0200.Decode(msgBody.Copy(2, msgBody.Length - 2));
 
             return item;
         }

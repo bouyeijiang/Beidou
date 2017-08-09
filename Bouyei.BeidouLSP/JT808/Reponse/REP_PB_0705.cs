@@ -27,7 +27,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
         /// </summary>
         /// <param name="msgBody"></param>
         /// <returns></returns>
-        public PB0705 Deserialized(byte[] msgBody)
+        public PB0705 Decode(byte[] msgBody)
         {
             UInt16 count = msgBody.ToUInt16();
             PB0705 item = new PB0705()

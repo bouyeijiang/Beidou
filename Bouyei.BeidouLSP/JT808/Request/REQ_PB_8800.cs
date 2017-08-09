@@ -19,7 +19,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// 消息指令0x8800数据体打包
         /// </summary>
         /// <returns></returns>
-        public byte[] Serialized(PB8800 info)
+        public byte[] Encode(PB8800 info)
         {
             byte count = (byte)(info.pIdList.Count);
             int len = 4 + (info.pIdList == null ? 0 : (count << 1));

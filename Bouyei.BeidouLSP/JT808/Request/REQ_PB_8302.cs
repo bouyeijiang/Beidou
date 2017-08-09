@@ -28,7 +28,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// <param name="question">问题内容</param>
         /// <param name="answerList">答案列表</param>
         /// <returns></returns>
-        public byte[] Serialized(PB8302 info)
+        public byte[] Encode(PB8302 info)
         {
             //问题内容转换为bytes
             byte[] _question = encoding.GetBytes(info.question);

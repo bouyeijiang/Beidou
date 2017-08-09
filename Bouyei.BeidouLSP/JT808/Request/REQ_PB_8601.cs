@@ -17,7 +17,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// </summary>
         /// <param name="areaId">区域ID列表</param>
         /// <returns></returns>
-        public byte[] Serialized(List<UInt32> areaId)
+        public byte[] Encode(List<UInt32> areaId)
         {
             byte[] data = new byte[(areaId.Count << 2) + 1];
             data[0] = (byte)areaId.Count;

@@ -112,12 +112,10 @@ namespace Bouyei.BeidouLSP
         {
             if (isBigEndian)
             {
-                return (UInt16)(((UInt16)value[0] << 8)
-                | ((UInt16)value[1]));
+                return (UInt16)((value[0] << 8)| value[1]);
             }
 
-            return (UInt16)(value[0]
-                | ((UInt16)((UInt16)value[1] << 8)));
+            return (UInt16)(value[0]| (value[1] << 8));
         }
 
         public static UInt16 ToUInt16(this byte[] value, int index)

@@ -28,7 +28,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// 数据打包
         /// </summary>
         /// <returns></returns>
-        public byte[] Serialized(PB8100 info)
+        public byte[] Encode(PB8100 info)
         {
             byte[] codes = null;
             int len = 3;

@@ -24,7 +24,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
         /// </summary>
         /// <param name="msgBody"></param>
         /// <returns></returns>
-        public PB0802 Deserialized(byte[] msgBody)
+        public PB0802 Decode(byte[] msgBody)
         {
             PB0802 item = new PB0802()
             {
@@ -51,7 +51,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
                 //事件项编码
                 indexItem.EventItemCoding = msgBody[indexOffset += 1];
                 //位置信息汇报
-                indexItem.PositionInformation = body0200.Deserialized(msgBody.Copy(indexOffset += 1, 28));
+                indexItem.PositionInformation = body0200.Decode(msgBody.Copy(indexOffset += 1, 28));
 
                 item.MultimediaIndexItems.Add(indexItem);
 

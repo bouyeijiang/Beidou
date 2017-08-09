@@ -21,7 +21,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// </summary>
         /// <param name="info">,Value:消息类型，StringValue:消息内容</param>
         /// <returns></returns>
-        public byte[] Serialized(ByteString info)
+        public byte[] Encode(ByteString info)
         {
             byte[] txt = Encoding.GetEncoding("GBK").GetBytes(info.StringValue);
             byte[] data = new byte[txt.Length + 3];

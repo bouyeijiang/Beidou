@@ -21,7 +21,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// </summary>
         /// <param name="info">区域ID</param>
         /// <returns></returns>
-        public byte[] Serialized(PB8604 info)
+        public byte[] Encode(PB8604 info)
         {
             List<byte> list = new List<byte>((info.polygonItemsInfo.Count << 3) + 21);
 

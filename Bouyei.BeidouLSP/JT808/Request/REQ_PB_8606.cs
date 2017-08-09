@@ -20,7 +20,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// </summary>
         /// <param name="RouteInfo">路线信息结构</param>
         /// <returns></returns>
-        public byte[] Serialized(PB8606 info)
+        public byte[] Encode(PB8606 info)
         {
             List<byte> buffer = new List<byte>(info.Items.Count * 25 + 18);
 

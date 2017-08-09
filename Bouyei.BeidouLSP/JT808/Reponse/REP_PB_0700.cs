@@ -22,7 +22,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
         public REP_PB_0700()
         {
         }
-        public PB0700 Deserialized(byte[] msgBody)
+        public PB0700 Decode(byte[] msgBody)
         {
             return new PB0700()
             {

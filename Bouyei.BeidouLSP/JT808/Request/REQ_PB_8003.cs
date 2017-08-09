@@ -27,7 +27,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// 补传包请求数据体打包
         /// </summary>
         /// <returns></returns>
-        public byte[] Serialized(PB8003 info)
+        public byte[] Encode(PB8003 info)
         {
             byte[] buffer = new byte[((byte)info.IDList.Count << 1) + 3];
 

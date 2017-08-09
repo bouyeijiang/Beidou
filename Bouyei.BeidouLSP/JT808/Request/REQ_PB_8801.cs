@@ -20,7 +20,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// </summary>
         /// <param name="info">立即拍摄消息结构</param>
         /// <returns></returns>
-        public byte[] Serialized(PB8801 info)
+        public byte[] Encode(PB8801 info)
         {
             byte[] data = new byte[12];
 

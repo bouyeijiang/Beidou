@@ -25,7 +25,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         {
         }
 
-        public byte[] Serialized(PB8108 info)
+        public byte[] Encode(PB8108 info)
         {
             byte[] v = encoding.GetBytes(info.version);
             List<byte> buffer = new List<byte>(info.manufacturersNo.Length + v.Length + info.updateData.Length + 1);

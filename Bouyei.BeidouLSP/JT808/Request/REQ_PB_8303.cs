@@ -22,7 +22,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// <param name="sType">设置类型,0：删除全部信息项,1：更新信息项,2：追加信息项,3：修改信息项</param>
         /// <param name="itemList">信息项列表</param>
         /// <returns></returns>
-        public byte[] Serialized(PB8303 info)
+        public byte[] Encode(PB8303 info)
         {
             byte count = (byte)info.MessageList.Count;
             List<byte> buffer = new List<byte>(count * 12 + 1);

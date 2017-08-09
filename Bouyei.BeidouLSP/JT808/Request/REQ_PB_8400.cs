@@ -20,7 +20,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// </summary>
         /// <param name="info">Value消息类型:0普通通话,1监听；StringValue:电话号码,最长20字节</param>
         /// <returns></returns>
-        public byte[] Serialized(ByteString info)
+        public byte[] Encode(ByteString info)
         {
             byte[] ph = Encoding.GetEncoding("GBK").GetBytes(info.StringValue);
             byte[] data = new byte[(ph.Length > 20 ? 20 : ph.Length) + 1];

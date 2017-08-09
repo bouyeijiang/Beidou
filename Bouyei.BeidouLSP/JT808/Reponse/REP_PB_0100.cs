@@ -28,7 +28,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
         /// </summary>
         /// <param name="msgBody"></param>
         /// <returns></returns>
-        public PB0100 Deserialized(byte[] msgBody)
+        public PB0100 Decode(byte[] msgBody)
         {
             return new PB0100()
             {

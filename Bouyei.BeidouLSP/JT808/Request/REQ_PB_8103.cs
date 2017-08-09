@@ -23,7 +23,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         {
         }
 
-        public byte[] Serialized(PB8103 info)
+        public byte[] Encode(PB8103 info)
         {
             List<byte> buffer = new List<byte>(info.Parameters.Count * 10);
 

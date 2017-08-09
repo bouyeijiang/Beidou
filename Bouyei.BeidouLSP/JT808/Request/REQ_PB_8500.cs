@@ -20,7 +20,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// </summary>
         /// <param name="flag">0表示车门解锁,1表示车门加锁</param>
         /// <returns></returns>
-        public byte[] Serialized(byte flag)
+        public byte[] Encode(byte flag)
         {
             return new byte[]
             {

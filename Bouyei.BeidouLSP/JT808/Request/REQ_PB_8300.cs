@@ -33,7 +33,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// <param name="msgType">(0-1)0:中心导航信息，1:CAN 故障码信息</param>
         /// <param name="msgContent">短信内容,最大值1024字节</param>
         /// <returns></returns>
-        public byte[] Serialized(PB8300 info)
+        public byte[] Encode(PB8300 info)
         {
             byte[] msgc = Encoding.GetEncoding("GBK").GetBytes(info.msgContent);
             byte[] data = new byte[msgc.Length + 1];

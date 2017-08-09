@@ -21,7 +21,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// </summary>
         /// <param name="info">联系人项</param>
         /// <returns></returns>
-        public byte[] Serialized(PB8401 info)
+        public byte[] Encode(PB8401 info)
         {
             List<byte> list = new List<byte>((info.ContactList.Count << 4) + 1);
 

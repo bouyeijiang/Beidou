@@ -23,7 +23,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         {
         }
 
-        public byte[] Serialized(PB8202 info)
+        public byte[] Encode(PB8202 info)
         {
             byte[] buffer = new byte[(info.tInterval == 0 ? 2 : 6)];
             buffer[0] = (byte)(info.tInterval >> 8);

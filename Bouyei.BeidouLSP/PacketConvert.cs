@@ -17,7 +17,7 @@ namespace Bouyei.BeidouLSP
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public byte[] Serialized(PacketFrom item)
+        public byte[] Encode(PacketFrom item)
         {
             return item.Encoding();
         }
@@ -28,16 +28,16 @@ namespace Bouyei.BeidouLSP
         /// <param name="buffer"></param>
         /// <param name="error">错误信息</param>
         /// <returns></returns>
-        public PacketMessage Deserialized(byte[] buffer)
+        public PacketMessage Decode(byte[] buffer,int offset,int count)
         {
-            if (buffer.Length <= 14 || buffer.Length >= 1040)
+            if (count <= 14 || count >= 1040)
             {
                 throw new Exception(string.Format("数据包有效长度为>14 且 <=1040,当前字节长度...{0}", buffer.Length));
             }
             byte checknum = 0;
 
             //转义还原
-            byte[] rawData = ReEscape(buffer, ref checknum);
+            byte[] rawData = ReEscape(buffer, offset, count, ref checknum);
             //验证校验码
             if (checknum != rawData[rawData.Length - 1])
             {
@@ -49,7 +49,7 @@ namespace Bouyei.BeidouLSP
             int pos = 0;
 
             //解析消息头
-            packetInfo.pmPacketHead = DeserializedRawHead(rawData, ref pos);
+            packetInfo.pmPacketHead = DecodeRawHead(rawData, ref pos);
 
             if (packetInfo.pmPacketHead.phPacketHeadAttribute.paMessageBodyLength > 0)
             {
@@ -78,18 +78,9 @@ namespace Bouyei.BeidouLSP
         /// <param name="buffer"></param>
         /// <param name="error">错误信息</param>
         /// <returns></returns>
-        public PacketMessage Deserialized(byte[] buffer, int offset, int count)
+        public PacketMessage Decode(byte[] buffer)
         {
-            unsafe
-            {
-                byte[] dst = new byte[count];
-                fixed (byte* src = buffer, _dst = dst)
-                {
-                    Nactive.Api.memcpy(_dst, src + offset, count);
-                }
-
-                return Deserialized(dst);
-            }
+            return Decode(buffer, 0, buffer.Length);
         }
 
         /// <summary>
@@ -98,7 +89,7 @@ namespace Bouyei.BeidouLSP
         /// <param name="buffer"></param>
         /// <param name="pos">解析的位置,初始化为1开始</param>
         /// <returns></returns>
-        public PacketHead DeserializedRawHead(byte[] buffer, ref int pos)
+        public PacketHead DecodeRawHead(byte[] buffer, ref int pos)
         {
             PacketHead headInfo = new PacketHead();
 
@@ -150,14 +141,14 @@ namespace Bouyei.BeidouLSP
         /// <param name="buffer"></param>
         /// <param name="checkcode"></param>
         /// <returns></returns>
-        private byte[] ReEscape(byte[] buffer, ref byte checkcode)
+        private byte[] ReEscape(byte[] buffer,int offset,int count ,ref byte checkcode)
         {
             unsafe
             {
-                int sindex = 1, slen = buffer.Length - 1, i = 0;
+                int sindex = offset + 1, slen = count - 1, i = 0;
                 byte cvalue, cnvalue;
 
-                fixed (byte* src = buffer, dst = new byte[buffer.Length - 2])
+                fixed (byte* src = buffer, dst = new byte[count - 2])
                 {
                     while (sindex < slen)
                     {

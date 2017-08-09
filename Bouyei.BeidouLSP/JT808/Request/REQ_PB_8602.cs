@@ -21,7 +21,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// </summary>
         /// <param name="info">矩形区域项</param>
         /// <returns></returns>
-        public byte[] Serialized(PB8602 info)
+        public byte[] Encode(PB8602 info)
         {
             List<byte> buffer = new List<byte>((info.rectangleItemsInfo.Count * 33) + 1);
 

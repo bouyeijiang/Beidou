@@ -20,7 +20,7 @@ namespace Bouyei.BeidouLSP.JT808.Request
         /// </summary>
         /// <param name="info">圆形区域信息结构</param>
         /// <returns></returns>
-        public byte[] Serialized(PB8600 info)
+        public byte[] Encode(PB8600 info)
         {
             List<byte> list = new List<byte>((info.circleItemsInfo.Count * 33) + 1);
 
