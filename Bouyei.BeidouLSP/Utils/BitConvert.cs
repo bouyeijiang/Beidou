@@ -122,12 +122,12 @@ namespace Bouyei.BeidouLSP
         {
             if (isBigEndian)
             {
-                return (UInt16)(((UInt16)value[index] << 8)
-                | ((UInt16)value[index + 1]));
+                return (UInt16)(value[index] << 8
+                | value[index + 1]);
             }
 
             return (UInt16)(value[index]
-                | ((UInt16)((UInt16)value[index + 1] << 8)));
+                | ((UInt16)(value[index + 1] << 8)));
         }
 
         public static UInt32 ToUInt32(this byte[] value)
@@ -137,13 +137,13 @@ namespace Bouyei.BeidouLSP
                 return (((UInt32)value[0] << 24)
                    | ((UInt32)value[1] << 16)
                    | ((UInt32)value[2] << 8)
-                   | ((UInt32)value[3]));
+                   | value[3]);
             }
 
-            return (((UInt32)value[0])
+            return value[0]
                    | ((UInt32)value[1] << 8)
                    | ((UInt32)value[2] << 16)
-                   | ((UInt32)value[3] << 24));
+                   | ((UInt32)value[3] << 24);
         }
 
         public static UInt32 ToUInt32(this byte[] value, int index)
@@ -153,13 +153,13 @@ namespace Bouyei.BeidouLSP
                 return (((UInt32)value[index] << 24)
                    | ((UInt32)value[index + 1] << 16)
                    | ((UInt32)value[index + 2] << 8)
-                   | (UInt32)value[index + 3]);
+                   | value[index + 3]);
             }
 
-            return ((UInt32)value[index]
+            return value[index]
                    | ((UInt32)value[index + 1] << 8)
                    | ((UInt32)value[index + 2] << 16)
-                   | ((UInt32)value[index + 3] << 24));
+                   | ((UInt32)value[index + 3] << 24);
         }
 
         public static UInt64 ToUInt64(this byte[] value)
@@ -173,17 +173,17 @@ namespace Bouyei.BeidouLSP
                   | ((UInt64)value[4] << 24)
                   | ((UInt64)value[5] << 16)
                   | ((UInt64)value[6] << 8)
-                  | (UInt64)value[7]);
+                  | value[7]);
             }
 
-            return ((UInt64)value[0]
+            return value[0]
                  | ((UInt64)value[1] << 8)
                  | ((UInt64)value[2] << 16)
                  | ((UInt64)value[3] << 24)
                  | ((UInt64)value[4] << 32)
                  | ((UInt64)value[5] << 40)
                  | ((UInt64)value[6] << 48)
-                 | ((UInt64)value[7] << 56));
+                 | ((UInt64)value[7] << 56);
         }
 
         public static UInt64 ToUInt64(this byte[] value, int index)
@@ -197,17 +197,17 @@ namespace Bouyei.BeidouLSP
                   | ((UInt64)value[index + 4] << 24)
                   | ((UInt64)value[index + 5] << 16)
                   | ((UInt64)value[index + 6] << 8)
-                  | (UInt64)value[index + 7]);
+                  | value[index + 7]);
             }
 
-            return ((UInt64)value[index]
+            return value[index]
                  | ((UInt64)value[index + 1] << 8)
                  | ((UInt64)value[index + 2] << 16)
                  | ((UInt64)value[index + 3] << 24)
                  | ((UInt64)value[index + 4] << 32)
                  | ((UInt64)value[index + 5] << 40)
                  | ((UInt64)value[index + 6] << 48)
-                 | ((UInt64)value[index + 7] << 56));
+                 | ((UInt64)value[index + 7] << 56);
         }
     }
 }
