@@ -27,7 +27,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
         {
             return new PB0001()
             {
-                serialNumber = msgBody.ToUInt16(),
+                serialNumber = msgBody.ToUInt16(0),
                 messageId = msgBody.ToUInt16(2),
                 result = msgBody[4]
             };

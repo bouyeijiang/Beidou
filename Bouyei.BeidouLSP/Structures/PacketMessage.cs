@@ -50,7 +50,7 @@ namespace Bouyei.BeidouLSP.Structures
         /// </summary>
         public byte[] msgBody = null;
 
-        public byte[] Encoding()
+        internal byte[] Encoding()
         {
             UInt16 k = 12, blen = 0;
             //计算包的长度
@@ -114,51 +114,19 @@ namespace Bouyei.BeidouLSP.Structures
         /// </summary>
         /// <param name="buffer"></param>
         /// <returns></returns>
-        public byte[] Escape(byte[] buffer)
+        internal unsafe byte[] Escape(byte[] buffer)
         {
-            unsafe
+            int i = 0, index = 1, len = buffer.Length;
+            int rlen = len + 3 + (len >> 4);
+            byte checkcode = buffer[0];
+
+            fixed (byte* dst = new byte[rlen], src = buffer)
             {
-                int i = 0, index = 1, len = buffer.Length;
-                int rlen = len + 3 + (len >> 4);
-                byte checkcode = buffer[0];
+                dst[0] = 0x7e;
 
-                fixed (byte* dst = new byte[rlen], src = buffer)
+                while (i < len)
                 {
-                    dst[0] = 0x7e;
-
-                    while (i < len)
-                    {
-                        switch (*(src + i))
-                        {
-                            case 0x7e:
-                                {
-                                    *(dst + index) = 0x7d;
-                                    *(dst + index + 1) = 0x02;
-                                    index += 2;
-                                }
-                                break;
-                            case 0x7d:
-                                {
-                                    *(dst + index) = 0x7d;
-                                    *(dst + index + 1) = 0x01;
-                                    index += 2;
-                                }
-                                break;
-                            default:
-                                *(dst + index) = *(src + i);
-                                ++index;
-                                break;
-                        }
-
-                        if (i >= 1)
-                        {
-                            checkcode ^= *(src + i);
-                        }
-
-                        ++i;
-                    }
-
-                    switch (checkcode)
+                    switch (*(src + i))
                     {
                         case 0x7e:
                             {
@@ -175,33 +143,53 @@ namespace Bouyei.BeidouLSP.Structures
                             }
                             break;
                         default:
-                            {
-                                *(dst + index) = checkcode;
-                                ++index;
-                            }
+                            *(dst + index) = *(src + i);
+                            ++index;
                             break;
                     }
 
-                    *(dst + index) = 0x7e;
-                    ++index;
-
-                    byte[] nbuffer = new byte[index];
-                    fixed (byte* b = nbuffer)
+                    if (i >= 1)
                     {
-                        Nactive.Api.memcpy(b, dst, index);
+                        checkcode ^= *(src + i);
                     }
-                    return nbuffer;
-                }
-            }
-        }
 
-        /// <summary>
-        /// 反转义
-        /// </summary>
-        /// <returns></returns>
-        public byte[] RevEscape()
-        {
-            return null;
+                    ++i;
+                }
+
+                switch (checkcode)
+                {
+                    case 0x7e:
+                        {
+                            *(dst + index) = 0x7d;
+                            *(dst + index + 1) = 0x02;
+                            index += 2;
+                        }
+                        break;
+                    case 0x7d:
+                        {
+                            *(dst + index) = 0x7d;
+                            *(dst + index + 1) = 0x01;
+                            index += 2;
+                        }
+                        break;
+                    default:
+                        {
+                            *(dst + index) = checkcode;
+                            ++index;
+                        }
+                        break;
+                }
+
+                *(dst + index) = 0x7e;
+                ++index;
+
+                byte[] nbuffer = new byte[index];
+                fixed (byte* b = nbuffer)
+                {
+                    Nactive.Api.memcpy(b, dst, index);
+                }
+                return nbuffer;
+            }
         }
     }
 

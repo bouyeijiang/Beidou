@@ -26,7 +26,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
         {
             return new PB0800()
             {
-                MultimediaDataId = msgBody.ToUInt32(),
+                MultimediaDataId = msgBody.ToUInt32(0),
                 MultmediaType = msgBody[4],
                 MultimediaFormat = msgBody[5],
                 EventItemCoding = msgBody[6],

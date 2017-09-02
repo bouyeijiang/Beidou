@@ -34,7 +34,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
 
             PB0801 item = new PB0801()
             {
-                MultimediaDataId = msgBody.ToUInt32(),
+                MultimediaDataId = msgBody.ToUInt32(0),
                 MultmediaType = msgBody[indexOffset += 4],
                 MultimediaFormat = msgBody[indexOffset += 1],
                 EventItemCoding = msgBody[indexOffset += 1],

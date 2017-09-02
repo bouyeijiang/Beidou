@@ -15,7 +15,7 @@ namespace Bouyei.BeidouLSPDemo
     {
         static void Main(string[] args)
         {
-            PacketConvert pConvert = new PacketConvert();
+            IPackeEncodingProvider pConvert = PacketEncodingProvider.CreateProvider();
             string phone = "18212004771";
 
             //终端连接鉴权平台回复通用应答
@@ -39,7 +39,7 @@ namespace Bouyei.BeidouLSPDemo
             });
 
             //解析终端发回的数据包
-            PacketMessage msg = pConvert.Decode(buffer);
+            PacketMessage msg = pConvert.Decode(buffer, 0, buffer.Length);
             //解析消息体内容
             if (msg.pmPacketHead.phMessageId == JT808Cmd.RSP_0102)
             {

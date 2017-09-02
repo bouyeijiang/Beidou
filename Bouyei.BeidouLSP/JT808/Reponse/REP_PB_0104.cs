@@ -34,7 +34,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
             byte len = 0;
             byte count = msgBody[2];
 
-            item.SerialNumber = msgBody.ToUInt16();
+            item.SerialNumber = msgBody.ToUInt16(0);
 
             item.Items = new List<UInt32Bytes>(count);
 

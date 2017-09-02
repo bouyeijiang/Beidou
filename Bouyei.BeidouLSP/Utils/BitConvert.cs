@@ -27,11 +27,6 @@ namespace Bouyei.BeidouLSP
             set { isBigEndian = value; }
         }
 
-        static BitConvert()
-        {
-
-        }
-
         /// <summary>
         /// 检查系统运行的字节序,true为大端,否则为小端
         /// </summary>
@@ -108,106 +103,54 @@ namespace Bouyei.BeidouLSP
             };
         }
 
-        public static UInt16 ToUInt16(this byte[] value)
+        public static UInt16 ToUInt16(this byte[] value,int offset)
         {
             if (isBigEndian)
             {
-                return (UInt16)((value[0] << 8)| value[1]);
+                return (UInt16)((value[offset] << 8)| value[offset+1]);
             }
 
-            return (UInt16)(value[0]| (value[1] << 8));
+            return (UInt16)(value[offset]| (value[offset+1] << 8));
         }
 
-        public static UInt16 ToUInt16(this byte[] value, int index)
+        public static UInt32 ToUInt32(this byte[] value,int offset)
         {
             if (isBigEndian)
             {
-                return (UInt16)(value[index] << 8
-                | value[index + 1]);
-            }
-
-            return (UInt16)(value[index]
-                | ((UInt16)(value[index + 1] << 8)));
-        }
-
-        public static UInt32 ToUInt32(this byte[] value)
-        {
-            if (isBigEndian)
-            {
-                return (((UInt32)value[0] << 24)
-                   | ((UInt32)value[1] << 16)
-                   | ((UInt32)value[2] << 8)
+                return (((UInt32)value[offset] << 24)
+                   | ((UInt32)value[offset+1] << 16)
+                   | ((UInt32)value[offset + 2] << 8)
                    | value[3]);
             }
 
-            return value[0]
-                   | ((UInt32)value[1] << 8)
-                   | ((UInt32)value[2] << 16)
-                   | ((UInt32)value[3] << 24);
+            return value[offset]
+                   | ((UInt32)value[offset + 1] << 8)
+                   | ((UInt32)value[offset + 2] << 16)
+                   | ((UInt32)value[offset + 3] << 24);
         }
 
-        public static UInt32 ToUInt32(this byte[] value, int index)
+        public static UInt64 ToUInt64(this byte[] value, int offset)
         {
             if (isBigEndian)
             {
-                return (((UInt32)value[index] << 24)
-                   | ((UInt32)value[index + 1] << 16)
-                   | ((UInt32)value[index + 2] << 8)
-                   | value[index + 3]);
+                return (((UInt64)value[offset] << 56)
+                  | ((UInt64)value[offset + 1] << 48)
+                  | ((UInt64)value[offset + 2] << 40)
+                  | ((UInt64)value[offset + 3] << 32)
+                  | ((UInt64)value[offset + 4] << 24)
+                  | ((UInt64)value[offset + 5] << 16)
+                  | ((UInt64)value[offset + 6] << 8)
+                  | value[offset + 7]);
             }
 
-            return value[index]
-                   | ((UInt32)value[index + 1] << 8)
-                   | ((UInt32)value[index + 2] << 16)
-                   | ((UInt32)value[index + 3] << 24);
-        }
-
-        public static UInt64 ToUInt64(this byte[] value)
-        {
-            if (isBigEndian)
-            {
-                return (((UInt64)value[0] << 56)
-                  | ((UInt64)value[1] << 48)
-                  | ((UInt64)value[2] << 40)
-                  | ((UInt64)value[3] << 32)
-                  | ((UInt64)value[4] << 24)
-                  | ((UInt64)value[5] << 16)
-                  | ((UInt64)value[6] << 8)
-                  | value[7]);
-            }
-
-            return value[0]
-                 | ((UInt64)value[1] << 8)
-                 | ((UInt64)value[2] << 16)
-                 | ((UInt64)value[3] << 24)
-                 | ((UInt64)value[4] << 32)
-                 | ((UInt64)value[5] << 40)
-                 | ((UInt64)value[6] << 48)
-                 | ((UInt64)value[7] << 56);
-        }
-
-        public static UInt64 ToUInt64(this byte[] value, int index)
-        {
-            if (isBigEndian)
-            {
-                return (((UInt64)value[index] << 56)
-                  | ((UInt64)value[index + 1] << 48)
-                  | ((UInt64)value[index + 2] << 40)
-                  | ((UInt64)value[index + 3] << 32)
-                  | ((UInt64)value[index + 4] << 24)
-                  | ((UInt64)value[index + 5] << 16)
-                  | ((UInt64)value[index + 6] << 8)
-                  | value[index + 7]);
-            }
-
-            return value[index]
-                 | ((UInt64)value[index + 1] << 8)
-                 | ((UInt64)value[index + 2] << 16)
-                 | ((UInt64)value[index + 3] << 24)
-                 | ((UInt64)value[index + 4] << 32)
-                 | ((UInt64)value[index + 5] << 40)
-                 | ((UInt64)value[index + 6] << 48)
-                 | ((UInt64)value[index + 7] << 56);
+            return value[offset]
+                 | ((UInt64)value[offset + 1] << 8)
+                 | ((UInt64)value[offset + 2] << 16)
+                 | ((UInt64)value[offset + 3] << 24)
+                 | ((UInt64)value[offset + 4] << 32)
+                 | ((UInt64)value[offset + 5] << 40)
+                 | ((UInt64)value[offset + 6] << 48)
+                 | ((UInt64)value[offset + 7] << 56);
         }
     }
 }

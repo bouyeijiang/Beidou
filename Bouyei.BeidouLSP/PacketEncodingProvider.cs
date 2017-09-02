@@ -7,10 +7,16 @@ using System.Threading.Tasks;
 namespace Bouyei.BeidouLSP
 {
     using Structures;
-    public class PacketConvert
+
+    public class PacketEncodingProvider:IPackeEncodingProvider
     {
-        public PacketConvert()
+        public PacketEncodingProvider()
         { }
+
+        public static PacketEncodingProvider CreateProvider()
+        {
+            return new PacketEncodingProvider();
+        }
 
         /// <summary>
         /// 序列化结构信息为字节序
@@ -103,8 +109,6 @@ namespace Bouyei.BeidouLSP
             //获取电话号码
             buffer.CopyTo(pos += 2, headInfo.hSimNumber, 0, 6);
 
-            //Buffer.BlockCopy(buffer, pos += 2, headInfo.SimNumber, 0, 6);
-
             //获取消息流水号
             headInfo.phSerialnumber = buffer.ToUInt16(pos += 6);
             //消息包封装项
@@ -141,59 +145,57 @@ namespace Bouyei.BeidouLSP
         /// <param name="buffer"></param>
         /// <param name="checkcode"></param>
         /// <returns></returns>
-        private byte[] ReEscape(byte[] buffer,int offset,int count ,ref byte checkcode)
+        private unsafe byte[] ReEscape(byte[] buffer, int offset, int count, ref byte checkcode)
         {
-            unsafe
+
+            int sindex = offset + 1, slen = count - 1, i = 0;
+            byte cvalue, cnvalue;
+
+            fixed (byte* src = buffer, dst = new byte[count - 2])
             {
-                int sindex = offset + 1, slen = count - 1, i = 0;
-                byte cvalue, cnvalue;
-
-                fixed (byte* src = buffer, dst = new byte[count - 2])
+                while (sindex < slen)
                 {
-                    while (sindex < slen)
+                    cvalue = *(src + sindex);
+                    cnvalue = *(src + sindex + 1);
+
+                    if (cvalue == 0x7d && cnvalue == 0x02)
                     {
-                        cvalue = *(src + sindex);
-                        cnvalue = *(src + sindex + 1);
-
-                        if (cvalue == 0x7d && cnvalue == 0x02)
-                        {
-                            *(dst + i) = 0x7e;
-                            ++sindex;
-                            goto pos;
-                        }
-                        else if (cvalue == 0x7d && cnvalue == 0x01)
-                        {
-                            *(dst + i) = 0x7d;
-                            ++sindex;
-                        }
-                        else
-                        {
-                            *(dst + i) = cvalue;
-                        }
-                    pos:
-                        //计算校验码
-                        if (i == 0)
-                        {
-                            checkcode = *(dst + i);
-                        }
-                        else
-                        {
-                            if (sindex < (slen - 1))
-                            {
-                                checkcode ^= *(dst + i);
-                            }
-                        }
-
+                        *(dst + i) = 0x7e;
                         ++sindex;
-                        ++i;
+                        goto pos;
                     }
-                    byte[] nbuffer = new byte[i];
-                    fixed (byte* nb = nbuffer)
+                    else if (cvalue == 0x7d && cnvalue == 0x01)
                     {
-                       Nactive.Api.memcpy(nb, dst, i);
+                        *(dst + i) = 0x7d;
+                        ++sindex;
                     }
-                    return nbuffer;
+                    else
+                    {
+                        *(dst + i) = cvalue;
+                    }
+                    pos:
+                    //计算校验码
+                    if (i == 0)
+                    {
+                        checkcode = *(dst + i);
+                    }
+                    else
+                    {
+                        if (sindex < (slen - 1))
+                        {
+                            checkcode ^= *(dst + i);
+                        }
+                    }
+
+                    ++sindex;
+                    ++i;
                 }
+                byte[] nbuffer = new byte[i];
+                fixed (byte* nb = nbuffer)
+                {
+                    Nactive.Api.memcpy(nb, dst, i);
+                }
+                return nbuffer;
             }
         }
     }

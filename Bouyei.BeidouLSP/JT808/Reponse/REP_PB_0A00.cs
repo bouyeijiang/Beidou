@@ -31,7 +31,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
         {
             return new PB0A00()
             {
-                RSA_e = msgBody.ToUInt32(),
+                RSA_e = msgBody.ToUInt32(0),
                 RSA_n = msgBody.Copy(4, msgBody.Length - 4)
             };
         }

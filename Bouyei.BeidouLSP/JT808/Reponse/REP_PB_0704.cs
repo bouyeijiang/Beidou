@@ -32,7 +32,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
             REP_PB_0200 body0200 = new REP_PB_0200();
             int indexOffset = 3;
             UInt16 dlen = 0;
-            UInt16 itemCount = msgBody.ToUInt16();
+            UInt16 itemCount = msgBody.ToUInt16(0);
 
             PB0704 item = new PB0704()
             {

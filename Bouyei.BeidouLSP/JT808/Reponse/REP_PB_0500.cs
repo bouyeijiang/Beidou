@@ -31,7 +31,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
         {
             PB0500 item = new PB0500()
             {
-                SerialNumber = msgBody.ToUInt16()
+                SerialNumber = msgBody.ToUInt16(0)
             };
 
             REP_PB_0200 body0200 = new REP_PB_0200();

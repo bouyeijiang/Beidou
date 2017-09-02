@@ -29,7 +29,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
         /// <returns></returns>
         public PB0705 Decode(byte[] msgBody)
         {
-            UInt16 count = msgBody.ToUInt16();
+            UInt16 count = msgBody.ToUInt16(0);
             PB0705 item = new PB0705()
             {
                 CANBusDataReceptionTime = msgBody.Copy(2, 5)

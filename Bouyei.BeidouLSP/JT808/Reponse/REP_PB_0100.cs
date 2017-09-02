@@ -32,7 +32,7 @@ namespace Bouyei.BeidouLSP.JT808.Reponse
         {
             return new PB0100()
             {
-                ProvincialId = msgBody.ToUInt16(),
+                ProvincialId = msgBody.ToUInt16(0),
                 CityId = msgBody.ToUInt16(2),
                 ManufacturerId = msgBody.Copy(4, 5),
                 TerminalModel = msgBody.Copy(9, 20),
