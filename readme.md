@@ -3,9 +3,13 @@
 
 大概流程如下：
 1、终端通过tcp或udp连接服务端平台
+
 2、终端发送鉴权数据包验证(0102指令)
+
 3、平台应答鉴权数据包(8001指令)
+
 4、终端开始定时发送定位数据包(0200指令)
+
 5、连接完成正常收到定位数据包后就可以开始其他功能和业务的发包操作;
 
             IPackeEncodingProvider pConvert = PacketEncodingProvider.CreateProvider();
