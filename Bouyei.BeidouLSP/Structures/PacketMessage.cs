@@ -17,6 +17,11 @@ namespace Bouyei.BeidouLSP.Structures
     [StructLayout(LayoutKind.Sequential)]
     public class PacketFrom
     {
+        private byte _msgFlag = 0x7e;
+        /// <summary>
+        /// 消息包标志位0x7e（头标志和尾标识）共用
+        /// </summary>
+        public byte msgFlag { get { return _msgFlag; } }
         /// <summary>
         /// 消息ID
         /// </summary>
@@ -122,7 +127,7 @@ namespace Bouyei.BeidouLSP.Structures
 
             fixed (byte* dst = new byte[rlen], src = buffer)
             {
-                dst[0] = 0x7e;
+                dst[0] = _msgFlag;
 
                 while (i < len)
                 {
@@ -180,7 +185,7 @@ namespace Bouyei.BeidouLSP.Structures
                         break;
                 }
 
-                *(dst + index) = 0x7e;
+                *(dst + index) = _msgFlag;
                 ++index;
 
                 byte[] nbuffer = new byte[index];
@@ -288,7 +293,7 @@ namespace Bouyei.BeidouLSP.Structures
     public class PacketMessage
     {
         /// <summary>
-        /// 标识位
+        /// 标识位,0x7e
         /// </summary>
         public UInt16 pmFlag = 0x7e;
         /// <summary>
