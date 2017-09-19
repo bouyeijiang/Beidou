@@ -16,7 +16,7 @@ namespace Bouyei.BeidouLSPDemo
         static void Main(string[] args)
         {
             IPackeEncodingProvider pConvert = PacketEncodingProvider.CreateProvider();
-            string phone = "18212004771";
+            string phone = "18212001111";
 
             //终端连接鉴权平台回复通用应答
             byte[] body = new REQ_PB_8001().Encode(new PB8001()
