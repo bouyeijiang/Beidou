@@ -8,7 +8,7 @@ namespace Bouyei.BeidouLSP
 {
     using Structures;
 
-    public interface IPackeEncodingProvider
+    public interface IPacketProvider
     {
         byte[] Encode(PacketFrom item);
 

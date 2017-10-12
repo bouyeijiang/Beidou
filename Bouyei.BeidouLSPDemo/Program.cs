@@ -15,7 +15,7 @@ namespace Bouyei.BeidouLSPDemo
     {
         static void Main(string[] args)
         {
-            IPackeEncodingProvider pConvert = PacketEncodingProvider.CreateProvider();
+            IPacketProvider pConvert = PacketProvider.CreateProvider();
             string phone = "18212001111";
 
             //终端连接鉴权平台回复通用应答

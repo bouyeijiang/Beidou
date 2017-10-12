@@ -8,14 +8,14 @@ namespace Bouyei.BeidouLSP
 {
     using Structures;
 
-    public class PacketEncodingProvider:IPackeEncodingProvider
+    public class PacketProvider:IPacketProvider
     {
-        public PacketEncodingProvider()
+        public PacketProvider()
         { }
 
-        public static PacketEncodingProvider CreateProvider()
+        public static PacketProvider CreateProvider()
         {
-            return new PacketEncodingProvider();
+            return new PacketProvider();
         }
 
         /// <summary>
