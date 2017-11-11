@@ -203,6 +203,42 @@ namespace Bouyei.BeidouLSP
             return DateTime.ParseExact(timeString, tFormat.ToString(), System.Globalization.CultureInfo.InvariantCulture).ToString();
         }
 
+        public static int IndexOf(string original,string partten)
+        {
+            return JKMP(original, partten);
+        }
+
+        private static int JKMP(string str, string partten)
+        {
+            int j = 0, i = 0, pi = -1;
+            while (i < str.Length)
+            {
+                if (str[i] == partten[j])
+                {
+                    if (pi == -1 && j != 0 && partten[0] == str[i])
+                        pi = i;//记录主串中的字符是否有和子串的第一个字符相同的位置
+                    ++i;
+                    ++j;
+                    if (j >= partten.Length) //匹配完成
+                        return i - j;
+                }
+                else
+                {
+                    if (pi != -1)//字符不相同则移动pi个长度，提高效率的关键部分就是这个地方了。
+                    {
+                        i = pi + 1;
+                        j = 1;
+                        pi = -1;
+                    }
+                    else//和普通的匹配一样，匹配不成功则子串从0开始,主串继续下一个匹配
+                    {
+                        j = 0;
+                        ++i;
+                    }
+                }
+            }
+            return -1;
+        }
 
         internal static unsafe int BytesCompareTo(byte* src, byte* dst, int count)
         {
